@@ -30,9 +30,7 @@ describe('DELETE /api/books/:id', () => {
 
     const getResponse = await request(app).get('/api/books');
     expect(getResponse.body).not.toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({ id: 1 }),
-      ])
+      expect.arrayContaining([expect.objectContaining({ id: 1 })]),
     );
   });
 
@@ -40,7 +38,9 @@ describe('DELETE /api/books/:id', () => {
     const bookID = 999;
     const response = await request(app).delete(`/api/books/${bookID}`);
     expect(response.status).toBe(404);
-    expect(response.body).toEqual({ message: `Book with ID ${bookID} not found` });
+    expect(response.body).toEqual({
+      message: `Book with ID ${bookID} not found`,
+    });
   });
 
   it('should delete the correct book', async () => {
@@ -53,9 +53,7 @@ describe('DELETE /api/books/:id', () => {
     const finalResponse = await request(app).get('/api/books');
     expect(finalResponse.body.length).toBe(initialBooksCount - 1);
     expect(finalResponse.body).not.toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({ id: 2 }),
-      ])
+      expect.arrayContaining([expect.objectContaining({ id: 2 })]),
     );
   });
 });

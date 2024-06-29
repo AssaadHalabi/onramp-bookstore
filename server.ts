@@ -28,7 +28,7 @@ app.get('/api/books', (req, res) => {
 
 app.delete('/api/books/:id', (req, res) => {
   const { id } = req.params;
-  const bookIndex = books.findIndex(book => book.id === parseInt(id, 10));
+  const bookIndex = books.findIndex((book) => book.id === parseInt(id, 10));
 
   if (bookIndex === -1) {
     return res.status(404).json({ message: `Book with ID ${id} not found` });
